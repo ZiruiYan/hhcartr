@@ -1,0 +1,10 @@
+citHeader("To cite hhcartr in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "HHCART(G) - A reflected feature space for CART",
+  author   = "Phil Davies",
+  year     = 2020,
+  url      = "https://CRAN.R-project.org/package=hhcartr",
+  textVersion = paste("0.0.1")
+)

@@ -1,0 +1,26 @@
+#' Wine recognition data.
+#'
+#' These data are the results of a chemical analysis of wines grown in the same region in
+#' Italy but derived from three different cultivars. The analysis determined the quantities
+#' of 13 constituents found in each of the three types of wines.
+#' All 13 attributes are continuous. Distribution of classes: class 1 59x, class 2 71x,
+#' class 3 48x.
+#'
+#' @format A data frame with 178 rows and 13 variables:
+#' \describe{
+#'   \item{Alcohol}{}
+#'   \item{Malic acid}{}
+#'   \item{Ash}{}
+#'   \item{Alcalinity of ash}{}
+#'   \item{Magnesium}{}
+#'   \item{Total phenols}{}
+#'   \item{Flavanoids}{}
+#'   \item{Nonflavanoid phenols}{}
+#'   \item{Proanthocyanins}{}
+#'   \item{Color intensity}{}
+#'   \item{Hue}{}
+#'   \item{OD280/OD315 of diluted wines}{}
+#'   \item{Proline}{}
+#' }
+#' @source \url{https://archive.ics.uci.edu/ml/datasets/Wine}
+"wine"

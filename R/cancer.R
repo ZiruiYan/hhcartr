@@ -1,0 +1,32 @@
+#' Wisconsin Breast Cancer.
+#'
+#' This breast cancer databases was obtained from the University of Wisconsin Hospitals,
+#' Madison from Dr. William H. Wolberg.
+#'
+#' Attributes 2 through 10 have been used to represent instances. Each instance has one of 2
+#' possible classes: benign or malignant. Original dataset had 699 samples, 16 were removed
+#' as these contained NA's. Class distribution: Benign: 458 (65.5%), Malignant: 241 (34.5%).
+#'
+#' @docType data
+#'
+#' @usage data(cancer)
+#'
+#' @format A data frame with 683 rows and 10 variables:
+#' \describe{
+#'   \item{Sample code number}{id number}
+#'   \item{Clump Thickness}{1-10}
+#'   \item{Uniformity of Cell Size}{1-10}
+#'   \item{Uniformity of Cell Shape}{1-10}
+#'   \item{Marginal Adhesion}{1-10}
+#'   \item{Single Epithelial Cell Size}{1-10}
+#'   \item{Bare Nuclei}{1-10}
+#'   \item{Bland Chromatin}{1-10}
+#'   \item{Normal Nucleoli}{1-10}
+#'   \item{Mitoses}{1-10}
+#'   \item{Class}{2 for benign, 4 for malignant}
+#' }
+#'
+#' @keywords datasets cancer wisconsin
+#'
+#' @source \url{https://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+(original)}
+"cancer"
