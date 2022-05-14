@@ -199,6 +199,11 @@ save_margin <- function(margin_){
   pkg.env$tree_margin <- rbind(pkg.env$tree_margin, margin_)
 }
 
+#initialise the tree numbers
+clear_numbers <- function(){
+  pkg.env$numbers  <- list() 
+}
+
 # initialise the tree margin list
 clear_margin <- function(){
   pkg.env$tree_margin <- list()
