@@ -72,7 +72,7 @@ results.hhcartr <- function(x, ...){
   parms <- list(
     get_number = function(){
       # returns numbers
-      return(numbers)
+      return(pkg.env$numbers)
     },
     
     accuracy = function(){
