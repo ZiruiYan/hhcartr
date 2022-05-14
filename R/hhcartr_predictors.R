@@ -24,6 +24,7 @@ bagging_predict <- function(mytrees, testx, useIdentity, classify, objectid){
                     byrow = TRUE)
   #
   all_predictions <- matrix(c(rep(0, length(mytrees) * nrow(testx))), ncol=length(mytrees), nrow=nrow(testx), byrow = TRUE)
+  all_numbers <- matrix(c(rep(0, length(mytrees) * nrow(testx))), ncol=length(mytrees), nrow=nrow(testx), byrow = TRUE)
   #
   #actuals <- as.integer(unlist(testx["y"], use.names = FALSE))
   actuals <- as.integer(testx[, ncol(testx)])
@@ -37,10 +38,13 @@ bagging_predict <- function(mytrees, testx, useIdentity, classify, objectid){
 
     for(row in 1:nrow(testx)){
       # make the prediction for the current row and current tree
-      all_predictions[row, mytree] <- row_predict(root_node,
+      tmp <- row_predict(root_node,
                                                   testx[row, first_col:last_col],
                                                   useIdentity,
                                                   objectid)
+      all_predictions[row, mytree] <- tmp[[0]]
+      all_numbers[row, mytree]  <- tmp[[1]]
+      
     } # end for test data
 
     # calculate the margin for classification models
@@ -52,7 +56,7 @@ bagging_predict <- function(mytrees, testx, useIdentity, classify, objectid){
       root_node$node_mr <- mr_
     }
   }
-  return(list(all_predictions, tree_mr))
+  return(list(all_predictions, tree_mr,all_numbers))
 }
 
 ###########################################################################################################
@@ -70,9 +74,9 @@ bagging_predict <- function(mytrees, testx, useIdentity, classify, objectid){
 #' @return A prediction for the test dataset row.
 #'
 row_predict <- function(xnode, test_row, useIdentity, objectid){
-
+  number=0
   while(!xnode$node_children_left_NA){
-
+    number+=1
     if(useIdentity | !xnode$node_using_householder){
       new_threshold <- test_row[,xnode$node_feature_index]
     } else {
@@ -109,7 +113,7 @@ row_predict <- function(xnode, test_row, useIdentity, objectid){
       }
     }
   }
-  return(xnode$node_predicted_class)
+  return(list(xnodec,number))
 }
 
 ###########################################################################################################
@@ -140,6 +144,7 @@ make_predictions <- function(list_trees, test, useIdentity, classify, objectid){
   bagging_output     <- bagging_predict(list_trees, test, useIdentity, classify, objectid)
   prediction_results <- bagging_output[[1]]
   tree_mr            <- bagging_output[[2]]
+  numbers            <- bagging_output[[3]]
 
   # get the target variable values for later comparison
   actuals            <- as.integer(test[,ncol(test)])
@@ -165,9 +170,10 @@ make_predictions <- function(list_trees, test, useIdentity, classify, objectid){
       rmse           <- sqrt(mean((actuals - preds) ^ 2))
       stat_row       <- cbind(r_square, rmse)
       stats          <- rbind(stats, stat_row)
+      numbers        <- numbers[,result]
     }
   }
-  return(list(stats, tree_mr, prediction_results))
+  return(list(stats, tree_mr, prediction_results,numbers))
 }
 
 run_make_predictions <- function(trees, test, useIdentity, classify, objectid, prune_type = NA){
