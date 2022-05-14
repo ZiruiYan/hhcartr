@@ -54,7 +54,7 @@ results.hhcartr <- function(x, ...){
   msgs            <- sprintf(msg, sampleWithReplacement, useIdentity, testSize)
   message(msgs)
   runStats        <- get_run_stats(classify)
-  runStats_train  <- get_run_stat_train(classify)
+  runStats_train  <- get_run_stats_train(classify)
   meanTotalNodes  <- mean(runStats[[1]]$Number_of_Nodes)
   meanTotalLeaves <- mean(runStats[[1]]$Number_of_Leaves)
   if(classify){
