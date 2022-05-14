@@ -54,6 +54,7 @@ results.hhcartr <- function(x, ...){
   msgs            <- sprintf(msg, sampleWithReplacement, useIdentity, testSize)
   message(msgs)
   runStats        <- get_run_stats(classify)
+  runStats_train  <- get_run_stat_train(classify)
   meanTotalNodes  <- mean(runStats[[1]]$Number_of_Nodes)
   meanTotalLeaves <- mean(runStats[[1]]$Number_of_Leaves)
   if(classify){
@@ -75,9 +76,18 @@ results.hhcartr <- function(x, ...){
       return(pkg.env$numbers)
     },
     
+    get_number_train = function(){
+      return(pkg.env$numbers_train)
+    },
+    
     accuracy = function(){
       # returns Accuracy, Number_of_Nodes, Number_of_Leaves for each fold/trial
       return(runStats)
+    },
+    
+    accuracy_train = function(){
+      # returns Accuracy, Number_of_Nodes, Number_of_Leaves for each fold/trial of the train dataset
+      return(runStats_train)
     },
 
     margin = function(){
