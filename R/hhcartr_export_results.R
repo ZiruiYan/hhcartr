@@ -70,6 +70,11 @@ results.hhcartr <- function(x, ...){
   }
 
   parms <- list(
+    get_number = function(){
+      # returns numbers
+      return(numbers)
+    }
+    
     accuracy = function(){
       # returns Accuracy, Number_of_Nodes, Number_of_Leaves for each fold/trial
       return(runStats)
