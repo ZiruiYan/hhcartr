@@ -353,7 +353,10 @@ HHDecisionTreeCore <- function(response              = "classify",
         pkg.env$model_data_description <- save_data_description
       }
       # ------------------------------- End min_node_impurity check --------------------------
-
+      
+      #initialise pkg.env$numbers
+      clear_numbers()
+      
       # initialise pkg.env$model_fit_results
       clear_model_fit_results()
 
