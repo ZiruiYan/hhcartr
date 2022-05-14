@@ -26,13 +26,13 @@ parallelization using C++.
 [CRAN](https://CRAN.R-project.org) with:~~
 
 ``` r
-~~install.packages("hhcartr")~~
+install.packages("hhcartr")
 ```
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-~~devtools::install_github("kiwiphil/hhcartr")~~
+# devtools::install_github("kiwiphil/hhcartr")
 devtools::install_github("ZiruiYan/hhcartr")
 ```
 
