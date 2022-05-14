@@ -50,6 +50,7 @@ pkg.env$leaf_count                <- 0
 pkg.env$objectid_count            <- 0
 pkg.env$dot_list                  <- list()
 pkg.env$run_stats                 <- list()
+pkg.env$run_stats_train           <- list()
 pkg.env$node_count_node_vector    <- list()
 pkg.env$node_count_leaf_vector    <- list()
 pkg.env$model_fit_results         <- list()
@@ -64,7 +65,9 @@ pkg.env$feature_names             <- NA
 pkg.env$tree_strength             <- list()
 pkg.env$trial_strength            <- list()
 pkg.env$tree_margin               <- list()
+pkg.env$tree_margin_train         <- list()
 pkg.env$numbers                   <- list()
+pkg.env$numbers_train             <- list()
 pkg.env$useIdentity               <- NA
 pkg.env$classify                  <- NA
 pkg.env$n_folds                   <- NA
@@ -516,22 +519,32 @@ HHDecisionTreeCore <- function(response              = "classify",
 
           # go and make predictions on the test set
           prediction_output <- make_predictions(results, test, useIdentity, classify, 999999)
+          
+          prediction_output_train <- make_predictions(results, train, useIdentity, classify, 999999)
 
           # tree accuracy in [[1]]
           stats <- prediction_output[[1]]
+          stats_train <- prediction_output_train[[1]]
 
           # tree mr in [[2]]
           tree_mr <- prediction_output[[2]]
+          tree_mr_train <- prediction_output_train[[2]]
           
           # numbers in [[3]]
           numbers_ <- prediction_output[[3]]
+          numbers_train <- prediction_output[[3]]
+          
+          #save numbers
           pkg.env$numbers <- rbind(pkg.env$numbers, numbers_)
+          pkg.env$numbers_train <- rbind(pkg.env$numbers_train, numbers_train)
           
           # save this folds trees
           save_margin(tree_mr)
+          pkg.env$tree_margin_train <- rbind(pkg.env$tree_margin_train, tree_mr_train)
 
           # save accuracy stats for current fold
           save_run_stats(stats)
+          pkg.env$run_stats_train <- rbind(pkg.env$run_stats_train, stats_train)
 
           if(debug_msgs){
             msg  <- "Node Count=%s Leaf Count=%s"
