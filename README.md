@@ -22,18 +22,18 @@ parallelization using C++.
 
 ## Installation
 
-You can install the released version of hhcartr from
-[CRAN](https://CRAN.R-project.org) with:
+~~You can install the released version of hhcartr from
+[CRAN](https://CRAN.R-project.org) with:~~
 
-``` r
+~~``` r
 install.packages("hhcartr")
-```
-
+```~~
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("kiwiphil/hhcartr")
+~~devtools::install_github("kiwiphil/hhcartr")~~
+devtools::install_github("ZiruiYan/hhcartr")
 ```
 
 ## Example
