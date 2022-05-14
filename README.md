@@ -25,9 +25,9 @@ parallelization using C++.
 ~~You can install the released version of hhcartr from
 [CRAN](https://CRAN.R-project.org) with:~~
 
-~~``` r
-install.packages("hhcartr")
-```~~
+``` r
+~~install.packages("hhcartr")~~
+```
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
