@@ -42,9 +42,8 @@ bagging_predict <- function(mytrees, testx, useIdentity, classify, objectid){
                                                   testx[row, first_col:last_col],
                                                   useIdentity,
                                                   objectid)
-      print(tmp)
-      all_predictions[row, mytree] <- tmp[[0]]
-      all_numbers[row, mytree]  <- tmp[[1]]
+      all_predictions[row, mytree] <- tmp[[1]]
+      all_numbers[row, mytree]  <- tmp[[2]]
       
     } # end for test data
 
