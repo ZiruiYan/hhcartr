@@ -76,7 +76,7 @@ bagging_predict <- function(mytrees, testx, useIdentity, classify, objectid){
 row_predict <- function(xnode, test_row, useIdentity, objectid){
   number=0
   while(!xnode$node_children_left_NA){
-    number+=1
+    number <- number+1
     if(useIdentity | !xnode$node_using_householder){
       new_threshold <- test_row[,xnode$node_feature_index]
     } else {
