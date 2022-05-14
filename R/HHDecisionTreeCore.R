@@ -64,6 +64,7 @@ pkg.env$feature_names             <- NA
 pkg.env$tree_strength             <- list()
 pkg.env$trial_strength            <- list()
 pkg.env$tree_margin               <- list()
+pkg.env$numbers                   <- list()
 pkg.env$useIdentity               <- NA
 pkg.env$classify                  <- NA
 pkg.env$n_folds                   <- NA
@@ -518,6 +519,11 @@ HHDecisionTreeCore <- function(response              = "classify",
 
           # tree mr in [[2]]
           tree_mr <- prediction_output[[2]]
+          
+          # numbers in [[3]]
+          numbers_ <- prediction_output[[3]]
+          pkg.env$numbers <- rbind(pkg.env$numbers, numbers_)
+          
           # save this folds trees
           save_margin(tree_mr)
 
