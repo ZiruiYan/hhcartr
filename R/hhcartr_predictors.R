@@ -113,7 +113,7 @@ row_predict <- function(xnode, test_row, useIdentity, objectid){
       }
     }
   }
-  return(list(xnodec,number))
+  return(list(xnode$node_predicted_class,number))
 }
 
 ###########################################################################################################
