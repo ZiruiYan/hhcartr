@@ -126,6 +126,21 @@ get_run_stats <- function(classify = TRUE, show_oobee = FALSE){
   return(res)
 }
 
+# get the list of run statistics for the current model.
+get_run_stats_train <- function(classify = TRUE, show_oobee = FALSE){
+  # if nothing in the list then fit() has not been run so nothing to return.
+  if(length(pkg.env$oobee_accuracy)){
+    show_oobee <- TRUE
+  }
+
+  # classification results
+  df = data.frame(accuracy    <- round(unlist(pkg.env$run_stats_train), 2))
+  colnames(df) <- c("Accuracy")
+  
+  res <- list(df)
+  return(res)
+}
+
 # initialise the list of run statistics.
 clear_run_stats <- function(){
   pkg.env$run_stats <- list()
