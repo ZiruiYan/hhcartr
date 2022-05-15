@@ -359,6 +359,7 @@ HHDecisionTreeCore <- function(response              = "classify",
       
       #initialise pkg.env$numbers
       clear_numbers()
+      pgk.env$numbers_train  <-  list()
       
       # initialise pkg.env$model_fit_results
       clear_model_fit_results()
@@ -368,9 +369,11 @@ HHDecisionTreeCore <- function(response              = "classify",
 
       # initialise folds trees margin - pkg.env$tree_margin
       clear_margin()
+      pgk.env$tree_margin_train  <-  list()
 
       # initialise run stats - pkg.env$run_stats
       clear_run_stats()
+      pkg.env$run_stats_train  <-  list()
 
       # initialise oob-ee stats - pkg.env$oobee_accuracy
       clear_oobee_accuracy()
