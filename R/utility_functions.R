@@ -134,8 +134,10 @@ get_run_stats_train <- function(classify = TRUE, show_oobee = FALSE){
   }
 
   # classification results
-  df = data.frame(accuracy    <- round(unlist(pkg.env$run_stats_train), 2))
-  colnames(df) <- c("Accuracy")
+  df = data.frame(accuracy         <- round(unlist(pkg.env$run_stats_train), 2),
+                      Number_of_Nodes  <- unlist(pkg.env$node_count_node_vector),
+                      Number_of_Leaves <- unlist(pkg.env$node_count_leaf_vector))
+  colnames(df) <- c("Accuracy", "Number_of_Nodes", "Number_of_Leaves")
   
   res <- list(df)
   return(res)
