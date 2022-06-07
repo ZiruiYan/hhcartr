@@ -74,7 +74,7 @@ predict.hhcartr <- function(object, ..., test_data){
     },
     predictions = function(){
       return(preds)
-    }
+    },
     numbers = function(){
       return(numbers_tree)
     }
