@@ -50,6 +50,9 @@ predict.hhcartr <- function(object, ..., test_data){
 
   # predictions for each row on each tree
   preds <- prediction_output[[3]]
+  
+  # numbers for each tree
+  numbers_tree <- prediction_output[[4]]
 
   df <- data.frame()
   for (i in seq_along(stats)){
@@ -71,6 +74,9 @@ predict.hhcartr <- function(object, ..., test_data){
     },
     predictions = function(){
       return(preds)
+    }
+    numbers = function(){
+      return(numbers_tree)
     }
   )
   class(parms) <- append(class(parms), "predict")
