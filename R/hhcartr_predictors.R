@@ -24,7 +24,7 @@ bagging_predict <- function(mytrees, testx, useIdentity, classify, objectid){
                     byrow = TRUE)
   #
   all_predictions <- matrix(c(rep(0, length(mytrees) * nrow(testx))), ncol=length(mytrees), nrow=nrow(testx), byrow = TRUE)
-  all_numbers <- matrix(c(rep(0, length(mytrees) * nrow(testx))), ncol=length(mytrees), nrow=nrow(testx), byrow = TRUE)
+  all_numbers <- matrix(list(), ncol=length(mytrees), nrow=nrow(testx), byrow = TRUE)
   #
   #actuals <- as.integer(unlist(testx["y"], use.names = FALSE))
   actuals <- as.integer(testx[, ncol(testx)])
