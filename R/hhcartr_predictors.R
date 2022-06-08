@@ -76,7 +76,6 @@ bagging_predict <- function(mytrees, testx, useIdentity, classify, objectid){
 row_predict <- function(xnode, test_row, useIdentity, objectid){
   number=0
   while(!xnode$node_children_left_NA){
-    number <- number+1
     if(useIdentity | !xnode$node_using_householder){
       new_threshold <- test_row[,xnode$node_feature_index]
     } else {
@@ -89,27 +88,31 @@ row_predict <- function(xnode, test_row, useIdentity, objectid){
     # to collapse into a leaf - so just get prediction from this.
     if(xnode$node_objectid %in% objectid[[1]]){
       # return class when we find a node to collapse.
-      return(xnode$node_predicted_class)
+      return(list(xnode$node_predicted_class,number))
     }
     # here not performing ccp so carry on as normal
     # node_reverse_cond added to support rpart ingestion.
     if(xnode$node_reverse_cond){
       if(new_threshold >= xnode$node_threshold){
+        number <- number+1
         xnode <- xnode$node_children_left
       } else {
         if(xnode$node_children_right_NA){
           browser()
         }
+        number <- number+1
         xnode <- xnode$node_children_right
       }
     } else {
       if(new_threshold <= xnode$node_threshold){
         xnode <- xnode$node_children_left
+        number <- number+1
       } else {
         if(xnode$node_children_right_NA){
           browser()
         }
         xnode <- xnode$node_children_right
+        number <- number+1
       }
     }
   }
