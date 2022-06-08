@@ -74,7 +74,7 @@ bagging_predict <- function(mytrees, testx, useIdentity, classify, objectid){
 #' @return A prediction for the test dataset row.
 #'
 row_predict <- function(xnode, test_row, useIdentity, objectid){
-  number=0
+  number=numeric(0)
   while(!xnode$node_children_left_NA){
     if(useIdentity | !xnode$node_using_householder){
       new_threshold <- test_row[,xnode$node_feature_index]
@@ -94,25 +94,25 @@ row_predict <- function(xnode, test_row, useIdentity, objectid){
     # node_reverse_cond added to support rpart ingestion.
     if(xnode$node_reverse_cond){
       if(new_threshold >= xnode$node_threshold){
-        number <- number+1
+        number <- append(number,0)
         xnode <- xnode$node_children_left
       } else {
         if(xnode$node_children_right_NA){
           browser()
         }
-        number <- number+1
+        number <- append(number,1)
         xnode <- xnode$node_children_right
       }
     } else {
       if(new_threshold <= xnode$node_threshold){
         xnode <- xnode$node_children_left
-        number <- number+1
+        number <- append(number,0)
       } else {
         if(xnode$node_children_right_NA){
           browser()
         }
         xnode <- xnode$node_children_right
-        number <- number+1
+        number <- append(number,1)
       }
     }
   }
