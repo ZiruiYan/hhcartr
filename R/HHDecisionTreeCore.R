@@ -534,8 +534,8 @@ HHDecisionTreeCore <- function(response              = "classify",
           tree_mr_train <- prediction_output_train[[2]]
           
           # numbers in [[3]]
-          numbers_ <- prediction_output[[3]]
-          numbers_train <- prediction_output_train[[3]]
+          numbers_ <- prediction_output[[4]]
+          numbers_train <- prediction_output_train[[4]]
           
           #save numbers
           pkg.env$numbers <- rbind(pkg.env$numbers, numbers_)
