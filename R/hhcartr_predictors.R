@@ -43,7 +43,7 @@ bagging_predict <- function(mytrees, testx, useIdentity, classify, objectid){
                                                   useIdentity,
                                                   objectid)
       all_predictions[row, mytree] <- tmp[[1]]
-      all_numbers[row, mytree]  <- tmp[[2]]
+      all_numbers[row, mytree]  <- list(tmp[[2]])
       
     } # end for test data
 
